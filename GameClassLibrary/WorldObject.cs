@@ -8,8 +8,22 @@ namespace GameClassLibrary
 {
     public class WorldObject
     {
-        private string Name { get; set; }
+        private string ObjectID { get; set; }
+        private string ObjectName { get; set; }
         private bool lootable { get; set; }
         private bool removeable { get; set; }
+
+        public WorldObject()
+        {
+
+        }
+
+        public WorldObject(string objectID, string objectName, bool lootable, bool removeable)
+        {
+            ObjectID = objectID;
+            ObjectName = objectName;
+            this.lootable = lootable;
+            this.removeable = removeable;
+        }
     }
 }

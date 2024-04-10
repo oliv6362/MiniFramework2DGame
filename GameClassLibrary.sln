@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameClassLibrary", "GameClassLibrary\GameClassLibrary.csproj", "{AA2900A2-7246-48A1-9A44-8DADDFEE9C6D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameClassLibraryFramework", "GameClassLibrary\GameClassLibraryFramework.csproj", "{AA2900A2-7246-48A1-9A44-8DADDFEE9C6D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameConsoleApp", "GameConsoleApp\GameConsoleApp.csproj", "{3755133A-4795-4DD6-A889-6C6D91831BB7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameConsoleApp", "GameConsoleApp\GameConsoleApp.csproj", "{3755133A-4795-4DD6-A889-6C6D91831BB7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

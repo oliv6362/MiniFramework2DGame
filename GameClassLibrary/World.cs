@@ -1,12 +1,35 @@
 ﻿namespace GameClassLibrary
 {
+    using GameClassLibraryFramework.TracingAndLogger;
+    using System.Diagnostics;
     public class World
     {
-        private int MaxY { get; set; }
-        private int MaxX { get; set; }
+        public int MaxY { get; private set; }
+        public int MaxX { get; private set; }
 
         private List<Creature> Creatures = new List<Creature>();
         private List<WorldObject> WorldObjects = new List<WorldObject>();
+
+        public World()
+        {
+        }
+        public World(int maxY, int maxX)
+        {
+            MaxY = maxY;
+            MaxX = maxX;
+
+            GameLogger.Instance.LogInformation("World is being created... " + "Max width is:" + MaxX + " Max height is:" + MaxY);
+        }
+
+        public void AddTraceListener(TraceListener traceListener)
+        {
+            Trace.Listeners.Add(traceListener);
+        }
+
+        public void RemoveTraceListener(TraceListener traceListener)
+        {
+            Trace.Listeners.Remove(traceListener);
+        }
 
     }
 }
