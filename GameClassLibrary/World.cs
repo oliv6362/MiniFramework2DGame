@@ -21,15 +21,6 @@
             GameLogger.Instance.LogInformation("World is being created... " + "Max width is:" + MaxX + " Max height is:" + MaxY);
         }
 
-        public void AddTraceListener(TraceListener traceListener)
-        {
-            Trace.Listeners.Add(traceListener);
-        }
-
-        public void RemoveTraceListener(TraceListener traceListener)
-        {
-            Trace.Listeners.Remove(traceListener);
-        }
 
     }
 }

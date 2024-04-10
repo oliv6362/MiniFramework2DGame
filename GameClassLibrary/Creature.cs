@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GameClassLibraryFramework.TracingAndLogger;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
@@ -42,6 +43,19 @@ namespace GameClassLibrary
         public void loot(WorldObject obj)
         {
 
+        }
+
+        public void AddCreature(Creature creature)
+        {
+            //Creatures.Add(creature);
+            GameLogger.Instance.LogInformation("Creature is being added...");
+            
+        }
+
+        public void RemoveCreature(Creature creature)
+        {
+            //Creatures.Remove(this);
+            GameLogger.Instance.LogInformation("Creature is being removed...");
         }
 
     }

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GameClassLibraryFramework.TracingAndLogger;
+
 
 namespace GameClassLibrary
 {
@@ -24,6 +26,18 @@ namespace GameClassLibrary
             ObjectName = objectName;
             this.lootable = lootable;
             this.removeable = removeable;
+        }
+
+        public void AddWorldObject(WorldObject obj)
+        {
+            //WorldObjects.Add(obj);
+            GameLogger.Instance.LogInformation("WorldObject is being added...");
+        }
+
+        public void RemoveWorldObject(WorldObject obj)
+        {
+            //WorldObjects.Remove(this);
+            GameLogger.Instance.LogInformation("WorldObject is being removed...");
         }
     }
 }
