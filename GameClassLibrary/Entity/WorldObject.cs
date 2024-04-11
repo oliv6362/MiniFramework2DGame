@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using GameClassLibraryFramework.TracingAndLogger;
 
 
-namespace GameClassLibrary
+namespace GameClassLibraryFramework.Entity
 {
     public class WorldObject
     {
@@ -26,18 +26,6 @@ namespace GameClassLibrary
             ObjectName = objectName;
             this.lootable = lootable;
             this.removeable = removeable;
-        }
-
-        public void AddWorldObject(WorldObject obj)
-        {
-            //WorldObjects.Add(obj);
-            GameLogger.Instance.LogInformation("WorldObject is being added...");
-        }
-
-        public void RemoveWorldObject(WorldObject obj)
-        {
-            //WorldObjects.Remove(this);
-            GameLogger.Instance.LogInformation("WorldObject is being removed...");
         }
     }
 }

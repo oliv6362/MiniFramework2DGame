@@ -12,11 +12,11 @@ namespace GameClassLibraryFramework.Config
         public int MaxX { get; private set; }
         public int MaxY { get; private set; }
 
-        public void LoadConfig()
+        public void LoadConfig(string ConfigPath)
         {
             XmlDocument configDoc = new XmlDocument();
-            configDoc.Load("GameConfig.xml");
-   
+            //configDoc.Load("GameConfig.xml");
+            configDoc.Load(ConfigPath);
 
             XmlNode? maxXNode = configDoc.SelectSingleNode("/GameConfig/MaxX");
             if (maxXNode != null)

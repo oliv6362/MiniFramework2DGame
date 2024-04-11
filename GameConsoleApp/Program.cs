@@ -1,14 +1,10 @@
-﻿
-
-using GameClassLibrary;
-using GameClassLibraryFramework.Config;
+﻿using GameClassLibraryFramework.Manager;
 
 Console.WriteLine("Hello, World!");
 
 
-GameConfig gameConfig = new GameConfig();
-gameConfig.LoadConfig();
-
-World world = new World(gameConfig.MaxY, gameConfig.MaxX);
 
 
+
+GameWorldManager gameWorldManager = new GameWorldManager();
+gameWorldManager.LoadingGameWorld("(YOUR_XML_FILE_PATH)");

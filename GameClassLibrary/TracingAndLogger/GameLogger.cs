@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace GameClassLibraryFramework.TracingAndLogger
 {
+    ///Solid: Single Responsibility Principle
     /// <summary>
     /// Provides a singleton logger for game-related logging and tracing.
     /// Provides methods for logging information, warnings, and errors.
@@ -22,7 +23,7 @@ namespace GameClassLibraryFramework.TracingAndLogger
         /// Gets the singleton instance of the GameLogger.
         /// </summary>
         public static GameLogger Instance => instance.Value;
-
+         
         /// <summary>
         /// TraceSource used for logging.
         /// </summary>
@@ -65,7 +66,5 @@ namespace GameClassLibraryFramework.TracingAndLogger
         {
             gameTraceSource.TraceEvent(TraceEventType.Error, 0, message);
         }
-
-
     }
 }

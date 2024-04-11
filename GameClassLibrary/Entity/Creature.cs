@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GameClassLibrary
+namespace GameClassLibraryFramework.Entity
 {
     public class Creature
     {
@@ -43,19 +43,6 @@ namespace GameClassLibrary
         public void loot(WorldObject obj)
         {
 
-        }
-
-        public void AddCreature(Creature creature)
-        {
-            //Creatures.Add(creature);
-            GameLogger.Instance.LogInformation("Creature is being added...");
-            
-        }
-
-        public void RemoveCreature(Creature creature)
-        {
-            //Creatures.Remove(this);
-            GameLogger.Instance.LogInformation("Creature is being removed...");
         }
 
     }
