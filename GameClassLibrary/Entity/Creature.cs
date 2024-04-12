@@ -45,7 +45,7 @@ namespace GameClassLibraryFramework.Entity
             Inventory.RemoveWeapon(weapon);
         }
 
-        public void AddArmor(Armor armor)
+        public void AddArmor(IArmor armor)
         {
             Inventory.AddArmor(armor);
         }
