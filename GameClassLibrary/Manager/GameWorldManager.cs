@@ -5,6 +5,7 @@ using GameClassLibraryFramework.TracingAndLogger;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -48,15 +49,33 @@ namespace GameClassLibraryFramework.Manager
             gameWorld.AddWorldObject(worldObject);
         }
 
-        public void RemoveWorldObject()
+        public void RemoveWorldObject(WorldObject worldObject)
         {
-            // Remove World Object
             GameLogger.Instance.LogInformation("WorldObject is being removed...");
+            gameWorld.RemoveWorldObject(worldObject);
         }
 
+        public void DisplayAllWorldObjects()
+        {
+            GameLogger.Instance.LogInformation("Listing all lootable or removable World Objects:");
 
+            var objects = gameWorld.WorldObjects;
 
+            List<WorldObject> filteredObjects = objects
+                .Where(obj => obj.lootable || obj.removeable)
+                .OrderBy(obj => obj.position.X)
+                .ThenBy(obj => obj.position.Y)
+                .ToList();
 
+            GameLogger.Instance.LogInformation($"Total lootable or removable objects found: {filteredObjects.Count}");
 
+            if (filteredObjects.Any())
+            {
+                foreach (var obj in filteredObjects)
+                {
+                    GameLogger.Instance.LogInformation($"Lootable or removable Object: {obj.ObjectName}, Position: ({obj.position.X}, {obj.position.Y})");
+                }
+            }
+        }
     }
 }

@@ -3,19 +3,19 @@
     using GameClassLibraryFramework.Interfaces;
     using System.Diagnostics;
 
-    public class World : IGameWorld
+    public class GameWorld : IGameWorld
     {
         public int MaxY { get; set; }
         public int MaxX { get; set; }
 
-        private List<Creature> Creatures = new List<Creature>();
-        private List<WorldObject> WorldObjects = new List<WorldObject>();
+         public List<Creature> Creatures { get; private set; } = new List<Creature>();
+         public List<WorldObject> WorldObjects { get; private set; } = new List<WorldObject>();
 
-        public World()
+        public GameWorld()
         {
           
         }
-        public World(int maxY, int maxX)
+        public GameWorld(int maxY, int maxX)
         {
             MaxY = maxY;
             MaxX = maxX;

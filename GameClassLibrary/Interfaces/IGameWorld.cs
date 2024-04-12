@@ -9,6 +9,9 @@ namespace GameClassLibraryFramework.Interfaces
 {
     public interface IGameWorld
     {
+        List<Creature> Creatures { get; }
+        List<WorldObject> WorldObjects { get; }
+
         void AddCreature(Creature creature);
         void RemoveCreature(Creature creature);
         void AddWorldObject(WorldObject worldObject);
