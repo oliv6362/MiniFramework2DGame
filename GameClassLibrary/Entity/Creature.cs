@@ -16,7 +16,7 @@ namespace GameClassLibraryFramework.Entity
         public int CreatureID { get; private set; }
         public string CreatureName { get; private set; }
         public int MaxHitPoint { get; private set; }
-        public int CurrentHitPoint { get; private set; }
+        public int CurrentHitPoint { get; set; }
         public Vector2 Position { get; set; }
         public InventoryManager Inventory { get; private set; }
 
@@ -35,15 +35,6 @@ namespace GameClassLibraryFramework.Entity
             Position = newPosition;
         }
 
-        public void Attack(Creature target)
-        {
-            if (Inventory.WeaponItems.Any())
-            {
-                int totalDamage = Inventory.WeaponItems.Sum(weapon => weapon.CalculateDamage());
-                target.TakeDamage(totalDamage);
-            }
-        }
-
         public void TakeDamage(int damage)
         {
             int reducedDamage = damage;
@@ -52,10 +43,6 @@ namespace GameClassLibraryFramework.Entity
                 reducedDamage = Inventory.ArmorItems.Aggregate(damage, (current, armor) => armor.ReduceDamage(current));
             }
             CurrentHitPoint = Math.Max(CurrentHitPoint - reducedDamage, 0);
-            if (CurrentHitPoint <= 0)
-            {
-                // Handle the death of the creature, if necessary
-            }
         }
 
         public void AddWeapon(IWeapon weapon)
