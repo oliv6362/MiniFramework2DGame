@@ -1,4 +1,6 @@
-﻿using GameClassLibraryFramework.TracingAndLogger;
+﻿using GameClassLibraryFramework.Interfaces;
+using GameClassLibraryFramework.Manager;
+using GameClassLibraryFramework.TracingAndLogger;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,41 +11,48 @@ using System.Threading.Tasks;
 
 namespace GameClassLibraryFramework.Entity
 {
-    public class Creature
+    public class Creature : IMovable
     {
-        private string CreatureID { get; set; }
-        private string CreatureName { get; set; }
-        private int MaxHitPoint { get; set; }
-        private int CurrentHitPoint { get; set; }
-        private Vector2 Position { get; set; }
+        public int CreatureID { get; private set; }
+        public string CreatureName { get; private set; }
+        public int MaxHitPoint { get; private set; }
+        public int CurrentHitPoint { get; private set; }
+        public Vector2 Position { get; set; }
+        public InventoryManager Inventory { get; private set; }
 
-        private List<Weapon> AttackItems = new List<Weapon>();
-        private List<Armor> DefenseItems = new List<Armor>();
-
-        public Creature(string creatureID, string creatureName, int maxHitPoint, int currentHitPoint, Vector2 position)
+        public Creature(int creatureID, string creatureName, int maxHitPoint, int currentHitPoint, Vector2 position)
         {
             CreatureID = creatureID;
             CreatureName = creatureName;
             MaxHitPoint = maxHitPoint;
             CurrentHitPoint = currentHitPoint;
             Position = position;
+            Inventory = new InventoryManager();
         }
 
-        public void hit()
+        public void Move(Vector2 newPosition)
         {
-
-
+            Position = newPosition;
         }
 
-        public void receiveHit(int hit)
+        public void AddWeapon(IWeapon weapon)
         {
-
+            Inventory.AddWeapon(weapon);
         }
-
-        public void loot(WorldObject obj)
+        
+        public void RemoveWeapon(IWeapon weapon)
         {
-
+            Inventory.RemoveWeapon(weapon);
         }
 
+        public void AddArmor(Armor armor)
+        {
+            Inventory.AddArmor(armor);
+        }
+
+        public void RemoveArmor(Armor armor)
+        {
+            Inventory.RemoveArmor(armor);
+        }
     }
 }

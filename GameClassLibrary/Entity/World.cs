@@ -1,9 +1,9 @@
 ﻿namespace GameClassLibraryFramework.Entity
 {
-
+    using GameClassLibraryFramework.Interfaces;
     using System.Diagnostics;
 
-    public class World
+    public class World : IGameWorld
     {
         public int MaxY { get; set; }
         public int MaxX { get; set; }
@@ -21,10 +21,24 @@
             MaxX = maxX;
         }
 
-        public void checkvalues()
+        public void AddCreature(Creature creature)
         {
-            Console.WriteLine("MaxX: " + MaxX);
-            Console.WriteLine("MaxY: " + MaxY);
+            Creatures.Add(creature);
+        }
+
+        public void RemoveCreature(Creature creature)
+        {
+            Creatures.Remove(creature);
+        }
+
+        public void AddWorldObject(WorldObject worldObject)
+        {
+            WorldObjects.Add(worldObject);
+        }
+
+        public void RemoveWorldObject(WorldObject worldObject)
+        {
+            WorldObjects.Remove(worldObject);
         }
     }
 }

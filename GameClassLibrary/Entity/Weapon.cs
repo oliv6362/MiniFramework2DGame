@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GameClassLibraryFramework.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,23 +7,26 @@ using System.Threading.Tasks;
 
 namespace GameClassLibraryFramework.Entity
 {
-    public class Weapon : WorldObject
+    public class Weapon : WorldObject, IWeapon
     {
-        private int WeaponID { get; set; }
-        private string WeaponName { get; set; }
-        private string DamageAmount { get; set; }
-        private int WeaponHit { get; set; }
-        private int WeaponRange { get; set; }
+        public int WeaponID { get; private set; }
+        public string WeaponName { get; private set; }
+        public int WeaponDamage { get; private set; }
+        public int WeaponRange { get; private set; }
 
-        public Weapon(int weaponID, string weaponName, string damageAmount, int weaponHit, int weaponRange)
+        public Weapon(int weaponID, string weaponName, int weaponDamage, int weaponRange)
         {
             WeaponID = weaponID;
             WeaponName = weaponName;
-            DamageAmount = damageAmount;
-            WeaponHit = weaponHit;
+            WeaponDamage = weaponDamage;
             WeaponRange = weaponRange;
+
         }
 
-
+        public void CalculateDamage()
+        {
+            // Implementation of damage calculation
+        }
     }
 }
+

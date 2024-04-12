@@ -1,5 +1,6 @@
 ﻿using GameClassLibraryFramework.Config;
 using GameClassLibraryFramework.Entity;
+using GameClassLibraryFramework.Interfaces;
 using GameClassLibraryFramework.TracingAndLogger;
 using System;
 using System.Collections.Generic;
@@ -9,38 +10,42 @@ using System.Threading.Tasks;
 
 namespace GameClassLibraryFramework.Manager
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class GameWorldManager
     {
-        World gameWorld = new World();
-        GameConfig gameConfig = new GameConfig();
+        private IGameWorld gameWorld;
+        private IGameConfig gameConfig;
 
 
-        public void LoadingGameWorld(string ConfigPath)
+        public GameWorldManager(IGameWorld gameWorld, IGameConfig gameConfig)
         {
-            gameConfig.LoadConfig(ConfigPath);
-
-            gameWorld.MaxX = gameConfig.MaxX;
-            gameWorld.MaxY = gameConfig.MaxY;
-
-            GameLogger.Instance.LogInformation("World is being created... " + "World Size is: " + gameWorld.MaxX + "x" + gameWorld.MaxY);
+            this.gameWorld = gameWorld;
+            this.gameConfig = gameConfig;
+            GameLogger.Instance.LogInformation("World has been created. " + "World Size is: " + gameConfig.MaxX + "x" + gameConfig.MaxY);
+        }   
+           
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="creature"></param>
+        public void AddCreature(Creature creature)
+        {
+            GameLogger.Instance.LogInformation(creature.CreatureName + " Creature added. Position: " + creature.Position);
+            gameWorld.AddCreature(creature);
         }
 
-        public void AddCreature()
+        public void RemoveCreature(Creature creature)
         {
-            // Add Creature
-            GameLogger.Instance.LogInformation("Creature is being added...");
+            GameLogger.Instance.LogInformation(creature.CreatureName + " Creature is being removed...");
+            gameWorld.RemoveCreature(creature);
         }
 
-        public void RemoveCreature()
+        public void AddWorldObject(WorldObject worldObject)
         {
-            // Remove Creature
-            GameLogger.Instance.LogInformation("Creature is being removed...");
-        }
-
-        public void AddWorldObject()
-        {
-            // Add World Object
-            GameLogger.Instance.LogInformation("WorldObject is being added...");
+            GameLogger.Instance.LogInformation(worldObject.ObjectName + " WorldObject added. Position: " + worldObject.position);
+            gameWorld.AddWorldObject(worldObject);
         }
 
         public void RemoveWorldObject()

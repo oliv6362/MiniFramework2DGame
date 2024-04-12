@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GameClassLibraryFramework.Interfaces;
+using GameClassLibraryFramework.TracingAndLogger;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,15 +9,16 @@ using System.Xml;
 
 namespace GameClassLibraryFramework.Config
 {
-    public class GameConfig
+    public class GameConfig : IGameConfig
     {
         public int MaxX { get; private set; }
         public int MaxY { get; private set; }
 
         public void LoadConfig(string ConfigPath)
         {
+            GameLogger.Instance.LogInformation("Initializing the game world...");
+
             XmlDocument configDoc = new XmlDocument();
-            //configDoc.Load("GameConfig.xml");
             configDoc.Load(ConfigPath);
 
             XmlNode? maxXNode = configDoc.SelectSingleNode("/GameConfig/MaxX");
