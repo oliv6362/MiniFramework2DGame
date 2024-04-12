@@ -11,8 +11,8 @@ namespace GameClassLibraryFramework.Manager
 {
     public class InventoryManager
     {
-        private List<IWeapon> WeaponItems = new List<IWeapon>();
-        private List<IArmor> ArmorItems = new List<IArmor>();
+        public List<IWeapon> WeaponItems = new List<IWeapon>();
+        public List<IArmor> ArmorItems = new List<IArmor>();
 
         public void AddWeapon(IWeapon weapon)
         {
@@ -23,8 +23,14 @@ namespace GameClassLibraryFramework.Manager
 
         public void RemoveWeapon(IWeapon weapon)
         {
-            GameLogger.Instance.LogInformation("Weapon removed: " + weapon.WeaponName);
-            WeaponItems.Remove(weapon);
+            if (WeaponItems.Remove(weapon))
+            {
+                GameLogger.Instance.LogInformation("Weapon removed: " + weapon.WeaponName);
+            }
+            else
+            {
+                GameLogger.Instance.LogWarning("Attempt to remove weapon failed: " + weapon.WeaponName);
+            }
         }
 
         public void AddArmor(IArmor armor)
@@ -35,8 +41,14 @@ namespace GameClassLibraryFramework.Manager
 
         public void RemoveArmor(IArmor armor)
         {
-            GameLogger.Instance.LogInformation("Armor removed: " + armor.ArmorName);
-            ArmorItems.Remove(armor);
+            if (ArmorItems.Remove(armor))
+            {
+                GameLogger.Instance.LogInformation("Armor removed: " + armor.ArmorName);
+            }
+            else
+            {
+                GameLogger.Instance.LogWarning("Attempt to remove armor failed: " + armor.ArmorName);
+            }
         }
     }
 }

@@ -10,6 +10,7 @@ namespace GameClassLibraryFramework.Interfaces
     {
         int ArmorID { get; }
         string ArmorName { get; }
-        int ReduceHitPoint { get; }
+        int DefenseRating { get; }
+        int ReduceDamage(int incomingDamage);
     }
 }

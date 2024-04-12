@@ -35,6 +35,29 @@ namespace GameClassLibraryFramework.Entity
             Position = newPosition;
         }
 
+        public void Attack(Creature target)
+        {
+            if (Inventory.WeaponItems.Any())
+            {
+                int totalDamage = Inventory.WeaponItems.Sum(weapon => weapon.CalculateDamage());
+                target.TakeDamage(totalDamage);
+            }
+        }
+
+        public void TakeDamage(int damage)
+        {
+            int reducedDamage = damage;
+            if (Inventory.ArmorItems.Any())
+            {
+                reducedDamage = Inventory.ArmorItems.Aggregate(damage, (current, armor) => armor.ReduceDamage(current));
+            }
+            CurrentHitPoint = Math.Max(CurrentHitPoint - reducedDamage, 0);
+            if (CurrentHitPoint <= 0)
+            {
+                // Handle the death of the creature, if necessary
+            }
+        }
+
         public void AddWeapon(IWeapon weapon)
         {
             Inventory.AddWeapon(weapon);

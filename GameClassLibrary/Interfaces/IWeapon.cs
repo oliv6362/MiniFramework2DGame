@@ -12,7 +12,7 @@ namespace GameClassLibraryFramework.Interfaces
         string WeaponName { get; }
         int WeaponDamage { get; }
         int WeaponRange { get; }
-        void CalculateDamage();
+        int CalculateDamage();
   
     }
 }

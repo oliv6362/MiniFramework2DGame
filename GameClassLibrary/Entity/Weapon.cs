@@ -23,9 +23,9 @@ namespace GameClassLibraryFramework.Entity
 
         }
 
-        public void CalculateDamage()
+        public int CalculateDamage()
         {
-            // Implementation of damage calculation
+            return WeaponDamage;
         }
     }
 }

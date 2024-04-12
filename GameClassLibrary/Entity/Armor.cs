@@ -11,16 +11,18 @@ namespace GameClassLibraryFramework.Entity
     {
         public int ArmorID { get; private set; }
         public string ArmorName { get; private set; }
-        public int ReduceHitPoint { get; private set; }
+        public int DefenseRating { get; private set; }
 
-
-
-        public Armor(int armorID, string armorName, int reduceHitPoint)
+        public Armor(int armorID, string armorName, int defenseRating)
         {
             ArmorID = armorID;
             ArmorName = armorName;
-            ReduceHitPoint = reduceHitPoint;
+            DefenseRating = defenseRating;
         }
 
+        public int ReduceDamage(int incomingDamage)
+        {
+            return Math.Max(incomingDamage - DefenseRating, 0); // Ensures that damage does not go negative
+        }
     }
 }
