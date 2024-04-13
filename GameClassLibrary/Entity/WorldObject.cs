@@ -17,8 +17,6 @@ namespace GameClassLibraryFramework.Entity
         public bool lootable { get; private set; }
         public bool removeable { get; private set; }
 
-
-
         public WorldObject()
         {
 

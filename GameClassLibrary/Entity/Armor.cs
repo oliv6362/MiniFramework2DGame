@@ -22,7 +22,7 @@ namespace GameClassLibraryFramework.Entity
 
         public int ReduceDamage(int incomingDamage)
         {
-            return Math.Max(incomingDamage - DefenseRating, 0); // Ensures that damage does not go negative
+            return Math.Max(incomingDamage - DefenseRating, 0); 
         }
     }
 }
