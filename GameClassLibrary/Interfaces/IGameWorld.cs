@@ -1,4 +1,5 @@
 ﻿using GameClassLibraryFramework.Entity;
+using GameClassLibraryFramework.TemplateDesignPattern;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +10,11 @@ namespace GameClassLibraryFramework.Interfaces
 {
     public interface IGameWorld
     {
-        List<Creature> Creatures { get; }
+        List<AbstractCreature> Creatures { get; }
         List<WorldObject> WorldObjects { get; }
 
-        void AddCreature(Creature creature);
-        void RemoveCreature(Creature creature);
+        void AddCreature(AbstractCreature creature);
+        void RemoveCreature(AbstractCreature creature);
         void AddWorldObject(WorldObject worldObject);
         void RemoveWorldObject(WorldObject worldObject);
     }

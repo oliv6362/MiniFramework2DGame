@@ -2,6 +2,7 @@
 using GameClassLibraryFramework.Entity;
 using GameClassLibraryFramework.FactoryDesignPattern;
 using GameClassLibraryFramework.Interfaces;
+using GameClassLibraryFramework.TemplateDesignPattern;
 using GameClassLibraryFramework.TracingAndLogger;
 using System;
 using System.Collections.Generic;
@@ -34,13 +35,13 @@ namespace GameClassLibraryFramework.Manager
         /// 
         /// </summary>
         /// <param name="creature"></param>
-        public void AddCreature(Creature creature)
+        public void AddCreature(AbstractCreature creature)
         {
             GameLogger.Instance.LogInformation(creature.CreatureName + " Creature added. Position: " + creature.Position);
             gameWorld.AddCreature(creature);
         }
 
-        public void RemoveCreature(Creature creature)
+        public void RemoveCreature(AbstractCreature creature)
         {
             GameLogger.Instance.LogInformation(creature.CreatureName + " Creature is being removed...");
             gameWorld.RemoveCreature(creature);

@@ -1,6 +1,7 @@
 ﻿namespace GameClassLibraryFramework.Entity
 {
     using GameClassLibraryFramework.Interfaces;
+    using GameClassLibraryFramework.TemplateDesignPattern;
     using System.Diagnostics;
 
     public class GameWorld : IGameWorld
@@ -8,7 +9,7 @@
         public int MaxY { get; set; }
         public int MaxX { get; set; }
 
-         public List<Creature> Creatures { get; private set; } = new List<Creature>();
+         public List<AbstractCreature> Creatures { get; private set; } = new List<AbstractCreature>();
          public List<WorldObject> WorldObjects { get; private set; } = new List<WorldObject>();
 
         public GameWorld()
@@ -21,12 +22,12 @@
             MaxX = maxX;
         }
 
-        public void AddCreature(Creature creature)
+        public void AddCreature(AbstractCreature creature)
         {
             Creatures.Add(creature);
         }
 
-        public void RemoveCreature(Creature creature)
+        public void RemoveCreature(AbstractCreature creature)
         {
             Creatures.Remove(creature);
         }

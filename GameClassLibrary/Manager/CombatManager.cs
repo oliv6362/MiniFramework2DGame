@@ -1,4 +1,5 @@
 ﻿using GameClassLibraryFramework.Entity;
+using GameClassLibraryFramework.TemplateDesignPattern;
 using GameClassLibraryFramework.TracingAndLogger;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace GameClassLibraryFramework.Manager
         /// <summary>
         /// Initiates combat between two creatures. Continues until one creature is defeated.
         /// </summary>
-        public void Engage(Creature attacker, Creature defender)
+        public void Engage(AbstractCreature attacker, AbstractCreature defender)
         {
             GameLogger.Instance.LogInformation($"Combat started between {attacker.CreatureName} and {defender.CreatureName}.");
 
@@ -26,8 +27,8 @@ namespace GameClassLibraryFramework.Manager
                 }
             }
 
-            Creature winner = attacker.CurrentHitPoint > 0 ? attacker : defender;
-            Creature loser = attacker.CurrentHitPoint <= 0 ? attacker : defender;
+            AbstractCreature winner = attacker.CurrentHitPoint > 0 ? attacker : defender;
+            AbstractCreature loser = attacker.CurrentHitPoint <= 0 ? attacker : defender;
 
             GameLogger.Instance.LogInformation($"Combat ended. {winner.CreatureName} defeated {loser.CreatureName} and wins!.");
         }
@@ -35,7 +36,7 @@ namespace GameClassLibraryFramework.Manager
         /// <summary>
         /// Performs an attack and handles damage calculation and application.
         /// </summary>
-        private void PerformAttack(Creature attacker, Creature defender)
+        private void PerformAttack(AbstractCreature attacker, AbstractCreature defender)
         {
             if (attacker.Inventory.WeaponItems.Any())
             {
@@ -52,7 +53,7 @@ namespace GameClassLibraryFramework.Manager
         /// <summary>
         /// Applies damage to the creature, considering armor defense.
         /// </summary>
-        private int ApplyDamage(Creature creature, int damage)
+        private int ApplyDamage(AbstractCreature creature, int damage)
         {
             int reducedDamage = damage;
             if (creature.Inventory.ArmorItems.Any())

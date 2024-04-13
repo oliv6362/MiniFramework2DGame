@@ -3,7 +3,7 @@ using GameClassLibraryFramework.Entity;
 using GameClassLibraryFramework.FactoryDesignPattern;
 using GameClassLibraryFramework.Interfaces;
 using GameClassLibraryFramework.Manager;
-using GameClassLibraryFramework.TracingAndLogger;
+using GameClassLibraryFramework.TemplateDesignPattern;
 using System.Numerics;
 
 //SOLID Principles
@@ -12,6 +12,7 @@ using System.Numerics;
 //Design Patterns
 //1.GameLogger.cs => Singleton Pattern
 //2. WorldObjectFactory.cs, IworldObjectFactory, GameWorldManager => Factory Method Pattern
+//3. AbstractCreature.cs, Skeleton.cs, Goblin.cs => Template Design Pattern
 
 
 
@@ -33,7 +34,6 @@ IGameWorld gameWorld = new GameWorld(gameConfig.MaxX, gameConfig.MaxY);
 /// <summary>
 /// Setup the Game World Manager & Combat Manager
 /// </summary>
-//GameWorldManager gameWorldManager = new GameWorldManager(gameWorld, gameConfig);
 IWorldObjectFactory objectFactory = new WorldObjectFactory();
 GameWorldManager gameWorldManager = new GameWorldManager(gameWorld, gameConfig, objectFactory);
 CombatManager combatManager = new CombatManager();
@@ -45,7 +45,7 @@ Console.WriteLine();
 ///  Factory design pattern - worldobjects treasure chest, Shack and Bow
 /// </summary>
 gameWorldManager.AddWorldObject(1, "Treasure Chest", new Vector2(10, 7), true, false);
-gameWorldManager.AddWorldObject(2, "Old shack", new Vector2(6, 8), false, false);
+gameWorldManager.AddWorldObject(2, "Abandoned shack", new Vector2(6, 8), false, false);
 gameWorldManager.AddWorldObject(3, "Strong Bow", new Vector2(1, 9), false, true);
 
 
@@ -55,11 +55,12 @@ Console.WriteLine();
 /// <summary>
 ///Creating a skeleton creature and adding it to the game world.
 /// </summary>
-Creature skeleton = new Creature(1, "Skeleton", 75, 75, new Vector2(0, 5));
+AbstractCreature skeleton = new Skeleton(3, "Old Skeleton", new Vector2(5, 5));
 gameWorldManager.AddCreature(skeleton);
 
 /// <summary>
 /// Creating & adding weapons and armors to the skeleton
+/// Template design pattern - AbstractCreature
 /// </summary>
 IWeapon axe = new Weapon(1, "Fire Sword", 15, 2);
 skeleton.AddWeapon(axe);
@@ -71,13 +72,14 @@ skeleton.AddArmor(helmet);
 Console.WriteLine();
 
 /// <summary>
-///´Creating a goblin creature and adding it to the game world.
+/// Creating a goblin creature and adding it to the game world.
+/// Template design pattern - AbstractCreature
 /// </summary>
-Creature goblin = new Creature(2, "Goblin", 50, 50, new Vector2(5, 5));
+AbstractCreature goblin = new Goblin(3, "Crazy Goblin", new Vector2(1, 5));
 gameWorldManager.AddCreature(goblin);
 
 /// <summary>
-///Creating & adding weapons and armors to the goblin
+/// Creating & adding weapons and armors to the goblin
 /// </summary>
 IWeapon dagger = new Weapon(1, "Pointy dagger", 10, 1);
 goblin.AddWeapon(dagger);
@@ -120,3 +122,4 @@ Console.WriteLine();
 gameWorldManager.DisplayAllWorldObjects();
 
 Console.WriteLine();
+

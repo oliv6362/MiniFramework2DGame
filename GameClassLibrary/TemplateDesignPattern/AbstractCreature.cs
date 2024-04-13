@@ -1,34 +1,34 @@
-﻿using GameClassLibraryFramework.Interfaces;
+﻿using GameClassLibraryFramework.Entity;
+using GameClassLibraryFramework.Interfaces;
 using GameClassLibraryFramework.Manager;
-using GameClassLibraryFramework.TracingAndLogger;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
-using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GameClassLibraryFramework.Entity
+namespace GameClassLibraryFramework.TemplateDesignPattern
 {
-    public class Creature : IMovable
+    public abstract class AbstractCreature : IMovable
     {
         public int CreatureID { get; private set; }
         public string CreatureName { get; private set; }
-        public int MaxHitPoint { get; private set; }
+        public int MaxHitPoint { get; protected set; }
         public int CurrentHitPoint { get; set; }
         public Vector2 Position { get; set; }
         public InventoryManager Inventory { get; private set; }
 
-        public Creature(int creatureID, string creatureName, int maxHitPoint, int currentHitPoint, Vector2 position)
+        protected AbstractCreature(int creatureID, string creatureName, Vector2 position)
         {
             CreatureID = creatureID;
             CreatureName = creatureName;
-            MaxHitPoint = maxHitPoint;
-            CurrentHitPoint = currentHitPoint;
             Position = position;
             Inventory = new InventoryManager();
+            InitializeCreature();
         }
+
+        protected abstract void InitializeCreature();
 
         public void Move(Vector2 newPosition)
         {
@@ -49,7 +49,7 @@ namespace GameClassLibraryFramework.Entity
         {
             Inventory.AddWeapon(weapon);
         }
-        
+
         public void RemoveWeapon(IWeapon weapon)
         {
             Inventory.RemoveWeapon(weapon);
