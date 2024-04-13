@@ -4,7 +4,8 @@ A Mini-Framework for a turnbased 2d-game.
 A Mandatory assignment for Advanced Software construction.
 
 The project uses several Design patterns such as Singleton, Template, and Factory.
-The project attempts to adhere to the SOLID Principles.
+
+The project also attempts to adhere to the SOLID Principles.
 
 # How To Run
 1. Make sure that **"System.Diagnostics.EventLog"** package is downloaded with help of fx NuGet Package Manager.
