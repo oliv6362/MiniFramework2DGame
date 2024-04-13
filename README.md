@@ -8,6 +8,8 @@ The project attempts to adhere to the SOLID Principles.
 
 # How To Run
 **1. Make sure that "System.Diagnostics.EventLog" package is downloaded with help of fx NuGet Package Manager.**
+
 **2. In Program.cs replace "(YOUR_XML_FILE_PATH)" with your own path to your XML file**
+
 **3. Run "GameConsoleApp"**
 
