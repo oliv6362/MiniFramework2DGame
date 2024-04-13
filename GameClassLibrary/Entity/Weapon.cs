@@ -20,7 +20,6 @@ namespace GameClassLibraryFramework.Entity
             WeaponName = weaponName;
             WeaponDamage = weaponDamage;
             WeaponRange = weaponRange;
-
         }
 
         public int CalculateDamage()

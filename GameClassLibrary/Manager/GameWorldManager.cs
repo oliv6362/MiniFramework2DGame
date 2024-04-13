@@ -1,5 +1,6 @@
 ﻿using GameClassLibraryFramework.Config;
 using GameClassLibraryFramework.Entity;
+using GameClassLibraryFramework.FactoryDesignPattern;
 using GameClassLibraryFramework.Interfaces;
 using GameClassLibraryFramework.TracingAndLogger;
 using System;
@@ -18,15 +19,17 @@ namespace GameClassLibraryFramework.Manager
     {
         private IGameWorld gameWorld;
         private IGameConfig gameConfig;
+        private IWorldObjectFactory worldObjectFactory;  
 
 
-        public GameWorldManager(IGameWorld gameWorld, IGameConfig gameConfig)
+        public GameWorldManager(IGameWorld gameWorld, IGameConfig gameConfig, IWorldObjectFactory factory)
         {
             this.gameWorld = gameWorld;
             this.gameConfig = gameConfig;
+            this.worldObjectFactory = factory;
             GameLogger.Instance.LogInformation("World has been created. " + "World Size is: " + gameConfig.MaxX + "x" + gameConfig.MaxY);
-        }   
-           
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -54,6 +57,22 @@ namespace GameClassLibraryFramework.Manager
             GameLogger.Instance.LogInformation("WorldObject is being removed...");
             gameWorld.RemoveWorldObject(worldObject);
         }
+
+        /// <summary>
+        /// This method adds a new WorldObject to the game world using The factory pattern
+        /// </summary>
+        /// <param name="objectID"></param>
+        /// <param name="objectName"></param>
+        /// <param name="position"></param>
+        /// <param name="lootable"></param>
+        /// <param name="removable"></param>
+        public void AddWorldObject(int objectID, string objectName, Vector2 position, bool lootable, bool removable)
+        {
+            var worldObject = worldObjectFactory.CreateWorldObject(objectID, objectName, position, lootable, removable);
+            GameLogger.Instance.LogInformation(worldObject.ObjectName + " WorldObject added. Position: " + worldObject.position);
+            gameWorld.AddWorldObject(worldObject);
+        }
+
 
         public void DisplayAllWorldObjects()
         {
