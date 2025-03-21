@@ -1,7 +1,5 @@
 # Overview
-A Mini-Framework for a turnbased 2d-game.
-
-A Mandatory assignment for Advanced Software construction.
+A Mini-Framework for a turn-based 2D game.
 
 The project uses several Design patterns such as Singleton, Template, and Factory.
 
